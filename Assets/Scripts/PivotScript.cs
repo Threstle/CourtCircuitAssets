@@ -6,6 +6,8 @@ public class PivotScript : ObjectScript {
 	ButtonOneScript buttonOne;
 
 	public bool isInverted;
+	public bool isAuto;
+	public bool isInfinite;
 	public int maxMot = 360;
 	public int minMot = -360;
 	public bool rotIsLeft;
@@ -21,36 +23,56 @@ public class PivotScript : ObjectScript {
 	void Start () {
 		buttonOne = Camera.main.GetComponent<ButtonOneScript>();
 		originPosition = transform.position;
+		if(isAuto)InvokeRepeating ("activateAuto", 0, 0.01f);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		base.Update ();
-		setPosition ();
-		if (Input.GetKey (KeyCode.RightArrow))
-			activate ();
+
+
+
+
 	}
 
 	public void detectTouch(){
 
 	}
 
+	public void activateAuto(){
+		activate();
+	}
+
+
 	public override void activate(){
-		if (rotIsLeft) {
-			if (currentRot < maxMot) {
-					currentRot++;
-			} else {
-					rotIsLeft = false;
+
+		if (isInfinite) {
+			if(rotIsLeft){
+				currentRot++;
+			}
+			else{
+				currentRot--;
 			}
 		} 
 		else {
-			if(currentRot > minMot){
-				currentRot--;
-			}
-			else{
-				rotIsLeft = true;
+			if (rotIsLeft) {
+				if (currentRot < maxMot) {
+					currentRot++;
+				} else {
+					rotIsLeft = false;
+				}
+			} 
+			else {
+				if(currentRot > minMot){
+					currentRot--;
+				}
+				else{
+					rotIsLeft = true;
+				}
 			}
 		}
+
+		setPosition ();
 	}
 
 	public void setPosition(){
@@ -62,11 +84,11 @@ public class PivotScript : ObjectScript {
 
 			if (isInverted)
 					motion = -motion;
-			if (motion > maxMot)
-					motion = maxMot;
-			if (motion < minMot)
-					motion = minMot;
-
+//			if (motion > maxMot)
+//					motion = maxMot;
+//			if (motion < minMot)
+//					motion = minMot;
+//			
 			switch(motionMode){
 			case("r"):transform.rotation = Quaternion.Euler (transform.rotation.x, transform.rotation.y, motion);break;
 			case("x"):transform.position = new Vector3(originPosition.x+motion,transform.position.y,transform.position.z);break;

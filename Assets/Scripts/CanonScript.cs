@@ -24,6 +24,6 @@ public class CanonScript : ObjectScript {
 	public void shoot(){
 		GameObject bulletInstance = Instantiate (bullet, transform.position, transform.rotation) as GameObject;
 		bulletInstance.rigidbody2D.AddForce (transform.right * force);
-		Debug.Log (bulletInstance);
+	
 	}
 }
