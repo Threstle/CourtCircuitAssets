@@ -10,6 +10,7 @@ public class PivotScript : ObjectScript {
 	public bool isInfinite;
 	public int maxMot = 360;
 	public int minMot = -360;
+	public float decalage;
 	public bool rotIsLeft;
 	public float currentRot;
 	public float motion;
@@ -90,9 +91,9 @@ public class PivotScript : ObjectScript {
 //					motion = minMot;
 //			
 			switch(motionMode){
-			case("r"):transform.rotation = Quaternion.Euler (transform.rotation.x, transform.rotation.y, motion);break;
-			case("x"):transform.position = new Vector3(originPosition.x+motion,transform.position.y,transform.position.z);break;
-			case("y"):transform.position = new Vector3(transform.position.x,originPosition.y+motion,transform.position.z);break;
+			case("r"):transform.rotation = Quaternion.Euler (transform.rotation.x, transform.rotation.y, motion+decalage);break;
+			case("x"):transform.position = new Vector3(originPosition.x+motion,transform.position.y,transform.position.z+decalage);break;
+			case("y"):transform.position = new Vector3(transform.position.x,originPosition.y+motion,transform.position.z+decalage);break;
 			}
 
 						
