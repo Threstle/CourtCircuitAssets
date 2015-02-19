@@ -9,15 +9,16 @@ public class AxeTrapModuleScript : MonoBehaviour {
 	public int numberOfAxe;
 	public int axeSpeed;
 	public Vector2 scale;
+	public bool hasSpawned;
 	// Use this for initialization
 	void Start () {
 
-		transformInAxeTrap ();
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if(!Camera.main.GetComponent<GameStateScript>().isEditing && !hasSpawned)transformInAxeTrap ();
 	}
 
 	public void transformInAxeTrap(){
@@ -43,6 +44,6 @@ public class AxeTrapModuleScript : MonoBehaviour {
 		
 
 		}
-
+		hasSpawned = true;
 	}
 }
