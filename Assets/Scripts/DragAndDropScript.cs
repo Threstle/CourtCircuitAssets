@@ -119,7 +119,7 @@ public class DragAndDropScript : MonoBehaviour {
 
 		}
 		else{
-			if(touchIsDown &&  touchHasObject){
+			if(touchIsDown &&  touchHasObject && transform.GetComponent<ObjectScript>().isClickable){
 				transform.GetComponent<ObjectScript>().activate();
 			}
 

@@ -8,6 +8,7 @@ using System.Collections;
 
 public class ObjectScript : MonoBehaviour {
 
+	public bool isClickable = true;
 
 	// Use this for initialization
 	void Start () {
@@ -22,4 +23,5 @@ public class ObjectScript : MonoBehaviour {
 	public virtual void activate(){
 		Debug.Log ("FAIL");
 	}
+
 }
