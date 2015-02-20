@@ -1,15 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+public class ModuleScript : MonoBehaviour {
 
-[RequireComponent (typeof (Collider2D))]
 
-public class DeathObject : MonoBehaviour {
-
+	
 	public bool hasSpawned;
 	public bool isEditing;
 	Transform[] allChildren;
-
+	
 	// Use this for initialization
 	public virtual void Start () {
 		transformTrap();
@@ -27,15 +26,9 @@ public class DeathObject : MonoBehaviour {
 			
 		}
 	}
-
+	
 	public virtual void transformTrap(){
-
+		
 	}
 
-	public void OnCollisionEnter2D(Collision2D collision){
-		if (collision.collider.transform.tag == "Player") {
-			collision.collider.transform.GetComponent<BilleScript>().destroy();
-
-		}
-	}
 }

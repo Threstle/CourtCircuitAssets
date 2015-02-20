@@ -1,24 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AxeTrapModuleScript : MonoBehaviour {
+public class AxeTrapModuleScript : ModuleScript {
 
 	public GameObject piston;
 	public GameObject axe;
 	public GameObject pivot;
 	public int numberOfAxe;
 	public int axeSpeed;
-	public Vector2 scale;
-	public bool hasSpawned;
 	// Use this for initialization
-	void Start () {
-
-
+	public override void Start () {
+		base.Start ();
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		if(!Camera.main.GetComponent<GameStateScript>().isEditing && !hasSpawned)transformInAxeTrap ();
+	public override void Update () {
+		base.Update ();
+	}
+
+	public override void transformTrap(){
+		transformInAxeTrap ();
 	}
 
 	public void transformInAxeTrap(){
