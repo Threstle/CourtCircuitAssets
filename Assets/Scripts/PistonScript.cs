@@ -38,7 +38,7 @@ public class PistonScript : ObjectScript {
 	IEnumerator push(){
 		if (hasBille) {
 			transform.collider2D.enabled = false;
-			bille.rigidbody2D.AddForce (transform.right * force);
+			bille.rigidbody2D.AddForce (transform.root.transform.right * force);
 			yield return new WaitForSeconds(1f);
 			hasBille = false;
 			bille = null;

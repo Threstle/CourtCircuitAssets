@@ -8,20 +8,25 @@ public class PivotScript : ObjectScript {
 	public bool isInverted;
 	public bool isAuto;
 	public bool isInfinite;
+	public bool invertWhenTouch;
 	public int maxMot = 360;
 	public int minMot = -360;
 	public float decalage;
 	public bool rotIsLeft;
 	public float currentRot;
 	public float motion;
+	public float oldMotionRate;
 	public float motionRate = 1;
 	public float diff;
 	public float oldMotion;
 	public string motionMode = "r";
+	private bool oldRotIsLeft;
 
 	public Vector3 originPosition;
 	// Use this for initialization
 	void Start () {
+		oldMotionRate = motionRate;
+		oldRotIsLeft = rotIsLeft;
 		buttonOne = Camera.main.GetComponent<ButtonOneScript>();
 		originPosition = transform.position;
 		if(isAuto)InvokeRepeating ("activateAuto", 0, 0.01f);
@@ -31,12 +36,22 @@ public class PivotScript : ObjectScript {
 	void Update () {
 		base.Update ();
 
-
+		detectTouch ();
 
 
 	}
 
 	public void detectTouch(){
+		if(invertWhenTouch){
+			if (transform.GetComponent<DragAndDropScript> ().touchHasObject) {
+				rotIsLeft = !oldRotIsLeft;
+				//motionRate = oldMotionRate/4;
+			}
+			else{
+				rotIsLeft = oldRotIsLeft;
+				//motionRate = oldMotionRate;
+			}
+		}
 
 	}
 
@@ -82,7 +97,7 @@ public class PivotScript : ObjectScript {
 			motion = currentRot * motionRate;
 			diff = oldMotion - motion;
 			oldMotion = motion;
-
+//
 			if (isInverted)
 					motion = -motion;
 //			if (motion > maxMot)

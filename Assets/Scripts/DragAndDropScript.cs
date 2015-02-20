@@ -8,8 +8,8 @@ public class DragAndDropScript : MonoBehaviour {
 	private Vector3 origineSize;
 	private Vector2 origineMousePos;
 
-	private bool touchIsDown;
-	private bool touchHasObject;
+	public bool touchIsDown;
+	public bool touchHasObject;
 
 	// Use this for initialization
 	void Start () {
