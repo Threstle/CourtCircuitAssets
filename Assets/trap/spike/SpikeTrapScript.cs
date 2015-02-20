@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class SpikeGroupScript : MonoBehaviour {
+public class SpikeTrapScript : MonoBehaviour {
 
     public GameObject reference ;
     public GameObject spike ;
