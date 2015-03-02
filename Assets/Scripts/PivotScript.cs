@@ -8,6 +8,7 @@ public class PivotScript : ObjectScript {
 	public bool isInverted;
 	public bool isAuto;
 	public bool isInfinite;
+	public bool isGyroControled;
 	public bool invertWhenTouch;
 	public int maxMot = 360;
 	public int minMot = -360;
@@ -31,7 +32,7 @@ public class PivotScript : ObjectScript {
 		originPosition = transform.position;
 		if(isAuto)InvokeRepeating ("activateAuto", 0, 0.01f);
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 		base.Update ();
@@ -92,12 +93,14 @@ public class PivotScript : ObjectScript {
 	}
 
 	public void setPosition(){
-
-
+			
+			
 			motion = currentRot * motionRate;
 			diff = oldMotion - motion;
 			oldMotion = motion;
-//
+//				
+		if (isGyroControled)
+						motion = GameObject.Find ("Gyro").transform.rotation.y;
 			if (isInverted)
 					motion = -motion;
 //			if (motion > maxMot)
