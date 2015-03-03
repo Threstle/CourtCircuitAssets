@@ -32,7 +32,7 @@ public class SpikeTrapScript : MonoBehaviour {
 
 		Vector3 refPosition = reference.transform.position;
         float width = reference.renderer.bounds.size.x ;
-        number = (int) ((width - decayX) / (spikeWidth + space)) ; 
+        number = (int) ((width - decayX) / (spikeWidth + space)) ;
 
 		SpikeScript s ;
         for (int n=0 ; n<number ; n++) {

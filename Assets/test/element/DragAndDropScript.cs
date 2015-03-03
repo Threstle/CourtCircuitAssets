@@ -94,7 +94,9 @@ public class DragAndDropScript : MonoBehaviour {
 			}
 		}
 
-		canBeDragged = Camera.main.GetComponent<GameStateScript>().isEditing;
+		GameStateScript script = Camera.main.GetComponent<GameStateScript> ();
+		if (!script) return;
+		canBeDragged = script.isEditing;
 
 		if(canBeDragged){
 			if (Input.GetMouseButton (0) && touchHasObject) {
