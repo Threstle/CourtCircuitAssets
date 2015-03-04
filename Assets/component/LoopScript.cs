@@ -8,11 +8,14 @@ public class LoopScript : MonoBehaviour {
 		loopY ;
 
 	[Header("Limits")]
-
 	public float top ;
 	public float right ;
 	public float bottom ;
 	public float left ;
+	
+	[Header("Margins")]
+	public float marginX ;
+	public float marginY ;
 
 	// Use this for initialization
 	void Start ()
@@ -24,15 +27,16 @@ public class LoopScript : MonoBehaviour {
 	void Update ()
 	{
 		Vector3 position = transform.position ;
+		Vector3 size = gameObject.GetComponent<Renderer>().bounds.size;
 
 		if (loopX) {
-			if (transform.position.x > right) position.x = left - transform.localScale.x ;
-			else if (transform.position.x + transform.localScale.x < left) position.x = right ;
+			if (position.x > right + marginX) position.x = left - size.x - marginX ;
+			else if (position.x + size.x < left - marginX) position.x = right + marginX ;
 		}
 
 		if (loopY) {
-			if (transform.position.y + transform.localScale.y < bottom) position.y = top - transform.localScale.y ;
-			else if (transform.position.y > top) position.y = bottom ;
+			if (position.y + size.y < bottom - marginY) position.y = top - size.y + marginY ;
+			else if (position.y > top + marginY) position.y = bottom - marginY ;
 		}
 
 		transform.position = position ;
