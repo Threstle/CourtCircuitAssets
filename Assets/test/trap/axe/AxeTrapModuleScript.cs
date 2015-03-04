@@ -27,7 +27,7 @@ public class AxeTrapModuleScript : ModuleScript {
 		Vector3 posPiston = new Vector3 (0, 0,-1f);
 		GameObject pistonInstance = Instantiate (piston,posPiston,pivot.transform.rotation) as GameObject;
 		pistonInstance.transform.parent = transform;
-		posPiston = new Vector3 (0-pivot.renderer.bounds.size.x/10,piston.renderer.bounds.size.y/2,-1);
+		posPiston = new Vector3 (0-pivot.GetComponent<Renderer>().bounds.size.x/10,piston.GetComponent<Renderer>().bounds.size.y/2,-1);
 		pistonInstance.transform.localPosition = posPiston;
 
 
@@ -39,7 +39,7 @@ public class AxeTrapModuleScript : ModuleScript {
 			Vector3 posAxe = new Vector3 (0, 0,-1f);
 			GameObject axeInstance = Instantiate (axe,posAxe,transform.rotation) as GameObject;
 			axeInstance.transform.parent = transform;
-			posAxe = new Vector3 (0+pivot.renderer.bounds.size.x/4, 0,-1);
+			posAxe = new Vector3 (0+pivot.GetComponent<Renderer>().bounds.size.x/4, 0,-1);
 			axeInstance.transform.localPosition = posAxe;
 			axeInstance.GetComponent<PivotScript>().decalage = rate*i;
 			axeInstance.GetComponent<PivotScript>().motionRate = axeSpeed;

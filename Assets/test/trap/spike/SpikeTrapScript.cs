@@ -31,7 +31,7 @@ public class SpikeTrapScript : MonoBehaviour {
         reference = refr ;
 
 		Vector3 refPosition = reference.transform.position;
-        float width = reference.renderer.bounds.size.x ;
+        float width = reference.GetComponent<Renderer>().bounds.size.x ;
         number = (int) ((width - decayX) / (spikeWidth + space)) ;
 
 		SpikeScript s ;

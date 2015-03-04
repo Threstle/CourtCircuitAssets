@@ -37,12 +37,12 @@ public class PistonScript : ObjectScript {
 
 	IEnumerator push(){
 		if (hasBille) {
-			transform.collider2D.enabled = false;
-			bille.rigidbody2D.AddForce (transform.root.transform.right * force);
+			transform.GetComponent<Collider2D>().enabled = false;
+			bille.GetComponent<Rigidbody2D>().AddForce (transform.root.transform.right * force);
 			yield return new WaitForSeconds(1f);
 			hasBille = false;
 			bille = null;
-			transform.collider2D.enabled = true;
+			transform.GetComponent<Collider2D>().enabled = true;
 		}
 	}
 }

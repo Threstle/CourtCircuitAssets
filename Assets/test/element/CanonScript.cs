@@ -8,7 +8,7 @@ public class CanonScript : ObjectScript {
 
 	// Use this for initialization
 	void Start () {
-		
+		InvokeRepeating ("shoot", 0.5f, 0.5f);
 	}
 	
 	// Update is called once per frame
@@ -23,7 +23,7 @@ public class CanonScript : ObjectScript {
 
 	public void shoot(){
 		GameObject bulletInstance = Instantiate (bullet, transform.position, transform.rotation) as GameObject;
-		bulletInstance.rigidbody2D.AddForce (transform.right * force);
+		bulletInstance.GetComponent<Rigidbody2D>().AddForce (transform.right * force);
 	
 	}
 }
