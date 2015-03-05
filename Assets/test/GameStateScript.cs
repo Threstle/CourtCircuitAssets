@@ -24,20 +24,24 @@ public class GameStateScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		zoomCamera = transform.GetComponent<Camera>().orthographicSize;
-		door = GameObject.FindGameObjectWithTag("Door");
 
-		GameObject billePlayer = GameObject.FindGameObjectWithTag ("Player");
-		billePlayer.GetComponent<LoopScript>().enabled = true;
-		LoopScript script = billePlayer.GetComponent<LoopScript>();
-		script.loopX = true;
-		script.loopY = true;
-		float height = 2f * Camera.main.orthographicSize;
-		float width = height * Camera.main.aspect;
-		
-		script.top = Camera.main.transform.position.y+height/2;
-		script.bottom = Camera.main.transform.position.y-height/2;
-		script.left = Camera.main.transform.position.x - width/2;
-		script.right = Camera.main.transform.position.x +width/2;
+
+		if (!isMenu) {
+			GameObject billePlayer = GameObject.FindGameObjectWithTag ("Player");
+			billePlayer.GetComponent<LoopScript> ().enabled = true;
+			LoopScript script = billePlayer.GetComponent<LoopScript> ();
+			script.loopX = true;
+			script.loopY = true;
+			float height = 2f * Camera.main.orthographicSize;
+			float width = height * Camera.main.aspect;
+			
+			script.top = Camera.main.transform.position.y + height / 2;
+			script.bottom = Camera.main.transform.position.y - height / 2;
+			script.left = Camera.main.transform.position.x - width / 2;
+			script.right = Camera.main.transform.position.x + width / 2;
+		} else {
+			door = GameObject.FindGameObjectWithTag("Door");
+		}
 	}
 	
 	// Update is called once per frame
