@@ -11,9 +11,10 @@ public class GameStateScript : MonoBehaviour {
 	private float velocityZoom = 0.75f;
 	public float zoomCamera;
 	GameObject door;
+	public GameObject ball;
 
 	void Awake(){
-		Application.targetFrameRate = 60;
+
 		Screen.autorotateToLandscapeLeft = true;
 		Screen.autorotateToPortraitUpsideDown = false;
 		Screen.autorotateToPortrait = false;
@@ -23,6 +24,9 @@ public class GameStateScript : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		ball = GameObject.Find("canonBallMain");
+		ball.SetActive (false);
+
 		zoomCamera = transform.GetComponent<Camera>().orthographicSize;
 
 
@@ -46,9 +50,19 @@ public class GameStateScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (GameObject.Find ("SpacebrewObject").GetComponent<SpacebrewEvents> ().ballArduino)
+			spawnBall ();
+		Application.targetFrameRate = 60;
 	    if(isMenu)followBille ();
 		checkTouch ();
 	}	
+
+	public void spawnBall(){
+//		GameObject ballInstance = Instantiate (ball, transform.position, transform.rotation) as GameObject;
+//		ballInstance.transform.parent = GameObject.Find("Scene");
+//		ballInstance.transform.position = new Vector3 (-4.52f, -0.48f, -5f);
+		ball.SetActive (true);
+	}
 
 	void checkTouch(){
 		if (Input.GetMouseButton (0)) {
@@ -76,7 +90,7 @@ public class GameStateScript : MonoBehaviour {
 	}
 
 	void OnGUI() {
-
+		GUILayout.Label("" + Application.targetFrameRate);
 	}
 
 	public void followBille(){
