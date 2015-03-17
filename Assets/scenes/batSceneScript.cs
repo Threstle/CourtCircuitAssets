@@ -15,6 +15,8 @@ public class batSceneScript : MonoBehaviour {
 			                                                     -4),
 			                                     				 Quaternion.identity) as GameObject;
 			batInstance.transform.parent = transform;
+			batInstance.GetComponent<Rigidbody2D>().angularDrag = batInstance.GetComponent<Rigidbody2D>().angularDrag * Random.Range(0.6f,1.4f);
+			batInstance.GetComponent<Rigidbody2D>().mass = batInstance.GetComponent<Rigidbody2D>().mass * Random.Range(0.6f,1.4f);
 		}
 	}
 	

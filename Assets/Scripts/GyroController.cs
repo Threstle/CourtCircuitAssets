@@ -67,7 +67,7 @@ public class GyroController : MonoBehaviour
 //		GUILayout.Label("Calibration: " + calibration);
 //		GUILayout.Label("Camera base: " + cameraBase);
 //		GUILayout.Label("input.gyro.attitude: " + Input.gyro.attitude);
-		GUILayout.Label("transform.rotation: " + Physics2D.gravity.x);
+
 		Physics2D.gravity = new Vector2 (Input.acceleration.x*6,Physics2D.gravity.y);
 
 	}
