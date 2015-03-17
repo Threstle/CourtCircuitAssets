@@ -23,10 +23,12 @@ public class SpacebrewEvents : MonoBehaviour {
 
 
 
+
 	}
 
 	public void OnSpacebrewEvent(SpacebrewClient.SpacebrewMessage _msg) {
 		print ("Received Spacebrew Message"+_msg.value);
+
 		ballArduino = (_msg.value == "true");
 
 	}
@@ -37,6 +39,7 @@ public class SpacebrewEvents : MonoBehaviour {
 		string ledString = ledArduino.ToString().ToLower();
 		print ("Sending Spacebrew Message : " + ledString);
 		sbClient.sendMessage("unityLed", "boolean", ledString);
+
 	}
 
 
